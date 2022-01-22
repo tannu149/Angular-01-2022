@@ -6,10 +6,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ostukorv.component.css']
 })
 export class OstukorvComponent implements OnInit {
+  toodeNimi = "Coca cola";
+  toodeHind = 1;
+  toodeAktiivne = false;
 
-  constructor() { }
+  toodeNimi2 = "Fanta";
+  toodeHind2 = 1.5;
+  toodeAktiivne2 = true;
+
+  constructor() {
+    console.log("constructor käivitub");
+   }
 
   ngOnInit(): void {
+    console.log("Mindi ostukorvcomponenti lehele");
+  }
+
+  onEemaldaOstukorvist() {
+    console.log("Eemaldatud ostukorvist");
   }
 
 }
