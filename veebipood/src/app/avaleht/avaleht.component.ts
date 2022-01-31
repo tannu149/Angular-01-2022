@@ -6,6 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./avaleht.component.css']
 })
 export class AvalehtComponent implements OnInit {
+
+  tooted = [
+    {nimi: 'Coca cola', hind: 1, aktiivne: true}, 
+    {nimi: 'Fanta', hind: 1, aktiivne: true}, 
+    {nimi: 'Sprite', hind: 1.5, aktiivne: true}, 
+    {nimi: 'Vichy', hind: 1.7, aktiivne: false},
+    {nimi: 'Vitamine well', hind: 2.2, aktiivne: true}
+    ];
+
   kahendV22rtus = true; //boolean
   kahendV22rtusKaks = false; //boolean
 
@@ -26,10 +35,20 @@ export class AvalehtComponent implements OnInit {
     console.log("html käivitub, ngoninit aga vahetult enne");
   }
 
-  onLisaOstukorvi() {
-    console.log("ostukorvi lisamise funktsionaalsus töötab!")
-    this.kahendV22rtus = !this.kahendV22rtus;
-    this.kahendV22rtusKaks = !this.kahendV22rtusKaks;
+  onLisaOstukorvi(toode: any) {
+
+    const sessionStorageOstukorv = sessionStorage.getItem("ostukorv");
+    if (sessionStorageOstukorv) {
+      console.log("On olemas blokk");
+      const ostukorviTooted = JSON.parse(sessionStorageOstukorv);
+      ostukorviTooted.push(toode);
+      sessionStorage.setItem("ostukorv", JSON.stringify(ostukorviTooted));
+    } else {
+      console.log("ei ole olemas blokk");
+      sessionStorage.setItem("ostukorv", JSON.stringify([toode]));
+      
+    }
+    
   }
 
 }
