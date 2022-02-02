@@ -33,6 +33,10 @@ export class AvalehtComponent implements OnInit {
     console.log("AvalehtComponent käima minemise funksioon");
     console.log("Käivitub kui kasutaja läheb komponendi peale");
     console.log("html käivitub, ngoninit aga vahetult enne");
+    const tootedLocalStoragest = localStorage.getItem("tooted");
+    if (tootedLocalStoragest) {
+      this.tooted = JSON.parse(tootedLocalStoragest);
+    }
   }
 
   onLisaOstukorvi(toode: any) {
